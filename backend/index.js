@@ -6,7 +6,7 @@ const bodyParser = require('body-parser');
 
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: "https://digitalclass.vercel.app/",
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true
   })
@@ -31,9 +31,11 @@ db.connect((err) => {
     console.error('Error connecting to the database:', err);
     return;
   }
-
-
+else{
   console.log('Connected to the database');
+}
+
+ 
   
  
  
