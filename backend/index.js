@@ -6,7 +6,7 @@ const bodyParser = require('body-parser');
 
 app.use(
   cors({
-    origin: "https://digitalclass.vercel.app/",
+    origin: "http://localhost:3000",
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true
   })
@@ -19,10 +19,10 @@ const mysql = require('mysql');
 
 
 const db = mysql.createConnection({
-  host: '127.0.0.1', 
-  user: 'root',
-  password: '',
-  database: 'digital_class',
+  host: 'sql5.freesqldatabase.com', 
+  user: 'sql5673256',
+  password: 'aj6FF1jviU',
+  database: 'sql5673256',
 });
 
 // Attempt to connect to the database

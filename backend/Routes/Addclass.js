@@ -28,7 +28,7 @@ module.exports = (db) => {
           res.json({ message: 'Available', data: selectResult });
         } else {
           // Class does not exist, insert it
-          const insertSql = 'INSERT INTO Class(Class_Id,Class_Name, Class_TeacherID, InstituteCID) VALUES (?,?, ?, ?)';
+          const insertSql = 'INSERT INTO class(Class_Id,Class_Name, Class_TeacherID, InstituteCID) VALUES (?,?, ?, ?)';
           db.query(insertSql, [insertclassID,classname, teacherid, iid], (insertError, insertResult) => {
             if (insertError) {
               console.error('Database error:', insertError);

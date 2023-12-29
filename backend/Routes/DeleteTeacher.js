@@ -9,7 +9,7 @@ module.exports = (db) => {
     const SId = req.body.TeacherID;
     const iid = req.params.IId;
   
-    const sql = 'SELECT * FROM Teacher WHERE TeacherID=? AND TInstituteID=?';
+    const sql = 'SELECT * FROM teacher WHERE TeacherID=? AND TInstituteID=?';
   
     db.query(sql, [SId, iid], (error, result) => {
       if (error) {
