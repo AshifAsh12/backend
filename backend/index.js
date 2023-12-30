@@ -6,7 +6,7 @@ const bodyParser = require('body-parser');
 
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: "https://digitalclass.vercel.app",
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true
   })
