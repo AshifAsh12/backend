@@ -19,10 +19,10 @@ const mysql = require('mysql');
 
 
 const db = mysql.createConnection({
-  host: 'sql5.freesqldatabase.com', 
-  user: 'sql5673256',
-  password: 'aj6FF1jviU',
-  database: 'sql5673256',
+  host: 'digitalclass.cj6oiyg6qtjm.ap-southeast-2.rds.amazonaws.com', 
+  user: 'admin',
+  password: 'Cauvery$23',
+  database:  'digital_class',
 });
 
 // Attempt to connect to the database
