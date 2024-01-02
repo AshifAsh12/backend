@@ -2,7 +2,7 @@ const express = require('express');
 const cookieParser = require('cookie-parser'); // Import the cookie-parser middleware
 const router = express.Router();
 const jstoken = require('jsonwebtoken');
-const jswkey = "adminlogin";
+const jswkey = process.env.JWT_SECRET || 'adminlogin';
 
 module.exports = (db) => {
   router.post('/api/login', (req, res) => {
