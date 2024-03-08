@@ -3,7 +3,7 @@ const cookieParser = require('cookie-parser'); // Import the cookie-parser middl
 const router = express.Router();
 const jstoken = require('jsonwebtoken');
 const jswkey = 'jwtsecretkey'
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 
 
 module.exports = (db) => {
