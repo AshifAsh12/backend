@@ -7,7 +7,7 @@ module.exports=(db)=>{
     const Regno = req.body.Regno;
     const Name = req.body.Name;
     const Dob = req.body.Dob;
-    const email=req.body.email;
+    
     const Address=req.body.Address;
     const password=req.body.password;
     
@@ -15,9 +15,9 @@ module.exports=(db)=>{
 
     const iid = req.params.IId;
   
-    const sql = 'INSERT INTO teacher (TeacherID, Name, TD_O_B, Email,Address,TInstituteID,Password) VALUES (?, ?, ?, ?, ?,?,?)';
+    const sql = 'INSERT INTO teacher (TeacherID, Name, TD_O_B,Address,TInstituteID,Password) VALUES (?, ?, ?, ?,?,?)';
   
-    db.query(sql, [Regno, Name, Dob, email,Address,iid,password], (error, result) => {
+    db.query(sql, [Regno, Name, Dob,Address,iid,password], (error, result) => {
       if (error) {
         console.error('Database error:', error);
         res.status(500).json({ error: 'Data insertion failed' });

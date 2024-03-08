@@ -5,7 +5,7 @@ const mysql = require('mysql');
 module.exports = (db) => {
   router.get('/api/studentdetail/:IId', (req, res) => {
     const iid = req.params.IId;
-    const sql = 'SELECT  Regno, Name, DATE_FORMAT(StudentDOB, "%Y-%m-%d") AS StudentDOB, Father_name, Mother_name, Address, SClassID FROM student WHERE SInstituteID = ?';
+    const sql = 'SELECT  Regno, Name, DATE_FORMAT(StudentDOB, "%d-%m-%y") AS StudentDOB, Father_name, Mother_name, Address, SClassID FROM student WHERE SInstituteID = ?';
   
     db.query(sql, [iid], (error, result) => {
       if (error) {
@@ -20,7 +20,7 @@ module.exports = (db) => {
   
   router.get('/api/teacherstudentdetail/:TId', (req, res) => {
     const iid = req.params.TId;
-    const sql = 'SELECT  Regno, Name, DATE_FORMAT(StudentDOB, "%Y-%m-%d") AS StudentDOB, Father_name, Mother_name, Address, SClassID FROM student WHERE SClassID IN (SELECT Class_ID FROM class WHERE Class_TeacherID=?) ';
+    const sql = 'SELECT  Regno, Name, DATE_FORMAT(StudentDOB, "%d-%m-%y") AS StudentDOB, Father_name, Mother_name, Address, SClassID FROM student WHERE SClassID IN (SELECT Class_ID FROM class WHERE Class_TeacherID=?) ';
   
     db.query(sql, [iid], (error, result) => {
       if (error) {

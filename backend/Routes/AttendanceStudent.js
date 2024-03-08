@@ -23,9 +23,12 @@ module.exports = (db) => {
     });
   });
 
+
+ 
+
   router.get('/api/attendancedetails/:SId', (req, res) => {
     const sid = req.params.SId;
-    const sql = 'SELECT DATE_FORMAT(Attendance_Date, "%Y-%m-%d") AS Date,AstudentID,Name,Status From student,attendance where AstudentId=Regno AND AstudentId=?; ';
+    const sql = 'SELECT DATE_FORMAT(Attendance_Date, "%d-%m-%y") AS Date,AstudentID,Name,Status From student,attendance where AstudentId=Regno AND AstudentId=?; ';
   
     db.query(sql,[sid], (error, result) => {
       if (error) {

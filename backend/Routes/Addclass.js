@@ -13,7 +13,7 @@ module.exports = (db) => {
     const teacherid = req.body.Teachername;
     const iid = req.params.IId;
 
-    const selectSql = 'SELECT * FROM Class WHERE Class_Name=?';
+    const selectSql = 'SELECT * FROM class WHERE Class_Name=?';
 
     db.query(selectSql, [classID], (selectError, selectResult) => {
       if (selectError) {

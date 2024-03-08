@@ -7,7 +7,6 @@ module.exports=(db)=>{
     const Regno = req.body.Regno;
     const Name = req.body.Name;
     const Dob = req.body.Dob;
-    const email=req.body.email;
     const Address=req.body.Address;
     const password=req.body.password;
     
@@ -15,9 +14,9 @@ module.exports=(db)=>{
 
     const Tid = req.params.TId;
   
-    const sql = 'UPDATE `teacher` SET `TeacherID` = ?, `Name` = ?, `TD_o_b` = ?, `Email` = ?, `Address` = ?, `Password` = ? WHERE `teacher`.`TeacherID` = ?';
+    const sql = 'UPDATE `teacher` SET `TeacherID` = ?, `Name` = ?, `TD_o_b` = ?,  `Address` = ?, `Password` = ? WHERE `teacher`.`TeacherID` = ?';
   
-    db.query(sql, [Regno, Name, Dob, email,Address,password,Tid], (error, result) => {
+    db.query(sql, [Regno, Name, Dob,Address,password,Tid], (error, result) => {
       if (error) {
         console.error('Database error:', error);
         res.json({ message: 'failed' });

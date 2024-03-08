@@ -4,6 +4,29 @@ const mysql = require('mysql');
 
 module.exports = (db) => {
 
+
+
+
+  router.get('/api/allattendance/:TId', (req, res) => {
+    
+    const iid = req.params.TId;
+    
+    
+    
+  
+    const sql = 'SELECT DATE_FORMAT(Attendance_Date, "%Y-%m-%d") AS Date,Name,AStudentID,Status from attendance ,student where Regno=AstudentID AND SclassID=(select Class_ID from class where Class_TeacherID=?);';
+  
+    db.query(sql, [ iid], (error, result) => {
+      if (error) {
+        console.error('Database error:', error);
+        res.status(500).json({ error: 'Data retrieval failed' });
+      } else {
+        console.log('Data fetched successfully');
+        res.json(result);
+      }
+    });
+  });
+
     router.post('/api/submitAttendance', (req, res) => {
         const { attendanceData, date ,ClassID,IID} = req.body;
         

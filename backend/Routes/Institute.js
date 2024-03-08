@@ -2,47 +2,52 @@ const express = require('express');
 const router = express.Router();
 const mysql = require('mysql');
 
+const bcrypt = require('bcrypt');
+
 module.exports = (db) => {
   // Assuming db is a connection pool
-router.post('/api/registration/', async (req, res) => {
-  try {
-    const iid = req.body.iid;
-    const iname = req.body.iname;
-    const iaddress = req.body.iaddress;
-    const fname = req.body.fname;
-    const lname = req.body.lname;
-    const email = req.body.email;
-    const PhoneNo = req.body.pnumber;
-    const password = req.body.password;
-
-    // Start the transaction
-    await db.beginTransaction();
-
-    // Insert into the institute table
-    const sql1 = 'INSERT INTO institute (InstitutePID, Institute_Name, Institute_Address) VALUES (?, ?, ?)';
-    await db.query(sql1, [iid, iname, iaddress]);
-
-    // Insert into the user table
-    const sql2 = 'INSERT INTO user (Fname, Lname, Email, PhoneNo, InstituteFID, Password) VALUES (?, ?, ?, ?, ?, ?)';
-    await db.query(sql2, [fname, lname, email, PhoneNo, iid, password]);
-
-    // Update the user table
-    const sql3 = 'UPDATE user SET Password = ? WHERE InstituteFID = ?';
-    await db.query(sql3, [password, iid]);
-
-    // Commit the transaction
-    await db.commit();
-
-    console.log('Data inserted successfully');
-    res.json({ message: 'Data inserted successfully', result: {} });
-  } catch (error) {
-    // Rollback the transaction if an error occurs
-    await db.rollback();
-
-    console.error('Database error:', error);
-    res.status(500).json({ error: 'Data insertion failed' });
-  }
-});
+  router.post('/api/registration/', async (req, res) => {
+    try {
+      const iid = req.body.iid;
+      const iname = req.body.iname;
+      const iaddress = req.body.iaddress;
+      const fname = req.body.fname;
+      const lname = req.body.lname;
+      const email = req.body.email;
+      const PhoneNo = req.body.pnumber;
+      const password = req.body.password;
+  
+      // Hash the password
+      const hashedPassword = await bcrypt.hash(password, 10); // 10 is the salt rounds
+  
+      // Start the transaction
+      await db.beginTransaction();
+  
+      // Insert into the institute table
+      const sql1 = 'INSERT INTO institute (InstitutePID, Institute_Name, Institute_Address) VALUES (?, ?, ?)';
+      await db.query(sql1, [iid, iname, iaddress]);
+  
+      // Insert into the user table with hashed password
+      const sql2 = 'INSERT INTO user (Fname, Lname, Email, PhoneNo, InstituteFID, Password) VALUES (?, ?, ?, ?, ?, ?)';
+      await db.query(sql2, [fname, lname, email, PhoneNo, iid, hashedPassword]);
+  
+      // Update the user table
+      const sql3 = 'UPDATE user SET Password = ? WHERE InstituteFID = ?';
+      await db.query(sql3, [hashedPassword, iid]);
+  
+      // Commit the transaction
+      await db.commit();
+  
+      console.log('Data inserted successfully');
+      res.json({ message: 'Data inserted successfully', result: {} });
+    } catch (error) {
+      // Rollback the transaction if an error occurs
+      await db.rollback();
+  
+      console.error('Database error:', error);
+      res.status(500).json({ error: 'Data insertion failed' });
+    }
+  });
 
   
 
