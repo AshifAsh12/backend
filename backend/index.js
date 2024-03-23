@@ -6,7 +6,7 @@ const mysql = require('mysql');
 
 app.use(
   cors({
-    origin: 'https://digitalclass.vercel.app/',
+    origin: 'https://digitalclass.vercel.app',
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true,
   })
