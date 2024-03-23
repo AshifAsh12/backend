@@ -4,13 +4,22 @@ const app = express();
 const bodyParser = require('body-parser');
 const mysql = require('mysql');
 
-const corsOptions = {
-  origin: ['http://localhost:3000', 'https://digitalclass.vercel.app/'],
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  credentials: true,
-};
+app.use(
+  cors({
+    origin: 'https://digitalclass.vercel.app/',
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    credentials: true,
+  })
+);
 
-app.use(cors(corsOptions));
+/*app.use(
+  cors({
+    origin: 'http://localhost:3000',
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    credentials: true,
+  })
+);
+*/
 
 
 app.use(bodyParser.urlencoded({ extended: true }));
