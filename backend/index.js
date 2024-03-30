@@ -4,21 +4,21 @@ const app = express();
 const bodyParser = require('body-parser');
 const mysql = require('mysql');
 
-/*app.use(
+app.use(
   cors({
     origin: 'https://digitalclass.vercel.app',
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true,
   })
-);*/
+);
 
-app.use(
+/*app.use(
   cors({
     origin: 'http://localhost:3000',
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true,
   })
-);
+);*/
 
 
 
