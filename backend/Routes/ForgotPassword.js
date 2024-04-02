@@ -33,7 +33,7 @@ module.exports = (db) => {
         from: 'ashigasif@gmail.com',
         to: email,
         subject: 'Reset Password ',
-        text: `http://localhost:3000/reset-password/${email}/${token}`
+        text: `https://digitalclass.vercel.app/reset-password/${email}/${token}`
       };
       
       transporter.sendMail(mailOptions, function(error, info){
