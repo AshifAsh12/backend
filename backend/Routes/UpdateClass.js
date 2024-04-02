@@ -10,13 +10,22 @@ module.exports = (db) => {
     const teacherid = req.body.Teachername;
     const CId = req.params.CId;
 
-    if (!classID || !classname || !teacherid) {
-      return res.status(400).json({ error: 'Missing required fields' });
-    }
-
+    
+    const sql='select * from class where Class_ID=?'
     const sqlUpdate = 'UPDATE `class` SET `Class_ID` = ?, `Class_Name` = ?, `Class_TeacherID` = ? WHERE `class`.`Class_ID` = ?';
 
-    // You can directly perform the update without checking if the record exists
+    db.query(sql, [classID], (error, response) => {
+      if (error) {
+        console.error('Database error:', error);
+        return res.json({ message: 'Data updated failed' });
+      }
+
+     if(response.length>0){
+      return res.json({ message: 'failed'});
+     }
+     else{
+
+          // You can directly perform the update without checking if the record exists
     db.query(sqlUpdate, [classID, classname, teacherid, CId], (error, updateResult) => {
       if (error) {
         console.error('Database error:', error);
@@ -27,6 +36,13 @@ module.exports = (db) => {
       console.log('Data updated successfully');
       return res.json({ message: 'Data updated successfully', updateResult });
     });
+     }
+      
+    });
+
+   
+
+  
   });
 
   return router;
