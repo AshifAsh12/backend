@@ -4,25 +4,13 @@ const app = express();
 const bodyParser = require('body-parser');
 const mysql = require('mysql');
 
-
 app.use(
   cors({
     origin: 'http://localhost:3000',
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true,
   })
-
-
-
-/*app.use(
-  cors({
-    origin: 'http://localhost:3000',
-    methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    credentials: true,
-  })
-);*/
-
-
+);
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
